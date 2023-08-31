@@ -1,0 +1,41 @@
+##Bruno Sandoval, Rodrigo Granado, Vicente Carvalho, colocar o arquivo em formato input.txt
+
+def perform_union(set1, set2):
+    return set1.union(set2)
+
+def perform_intersection(set1, set2):
+    return set1.intersection(set2)
+
+def perform_difference(set1, set2):
+    return set1.difference(set2)
+
+def perform_cartesian(set1, set2):
+    cartesian_product = [(x, y) for x in set1 for y in set2]
+    return cartesian_product
+
+def main():
+    with open('input.txt', 'r') as file:
+        lines = file.readlines()
+
+    i = 0
+    while i < len(lines):
+        operation = lines[i].strip()
+        set1 = set(map(str, lines[i + 1].strip().split(',')))
+        set2 = set(map(str, lines[i + 2].strip().split(',')))
+
+        if operation == 'U':
+            result = perform_union(set1, set2)
+        elif operation == 'I':
+            result = perform_intersection(set1, set2)
+        elif operation == 'D':
+            result = perform_difference(set1, set2)
+        elif operation == 'C':
+            result = perform_cartesian(set1, set2)
+        else:
+            result = "Operação inválida"
+
+        print(f"Resultado da operação {operation}: {result}")
+        i += 3
+
+if __name__ == "__main__":
+    main()
